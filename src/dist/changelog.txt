@@ -1,0 +1,9 @@
+Spring Social 11st 1.0.0 Milestone 1 (November 11, 2016)
+===========================================================
+Miscellaneous
+
+Improvements
+
+New Features
+
+Bug Fixes

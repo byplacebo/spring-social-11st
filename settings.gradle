@@ -1,2 +1,3 @@
 rootProject.name = 'spring-social-11st'
 
+include 'spring-social-11st'
