@@ -1,4 +1,4 @@
-Spring Social 11st ${version}
+Spring Social 11st
 -----------------------------------------------------------
 Spring Social 11st is an extension to Spring Social to enable connectivity with 11st Connect ID services.
 
