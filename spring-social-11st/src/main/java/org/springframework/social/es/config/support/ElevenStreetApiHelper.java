@@ -27,14 +27,14 @@ public class ElevenStreetApiHelper implements ApiHelper<ElevenStreet> {
 
     public ElevenStreet getApi() {
         if (logger.isDebugEnabled()) {
-            logger.debug("Getting API binding instance for Google provider");
+            logger.debug("Getting API binding instance for Eleven Street provider");
         }
 
         Connection<ElevenStreet> connection = usersConnectionRepository
                 .createConnectionRepository(userIdSource.getUserId())
                 .findPrimaryConnection(ElevenStreet.class);
         if (logger.isDebugEnabled() && connection == null) {
-            logger.debug("No current connection; Returning default GoogleTemplate instance.");
+            logger.debug("No current connection; Returning default ElevenStreetTemplate instance.");
         }
         return connection != null ? connection.getApi() : null;
     }
