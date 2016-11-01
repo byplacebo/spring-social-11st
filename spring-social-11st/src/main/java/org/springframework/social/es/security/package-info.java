@@ -1,5 +1,4 @@
 /**
- * @author HyungTae Lim
- * @since 2016. 11. 1.
+ * Spring Security 연동을 위한 패키지 구성
  */
 package org.springframework.social.es.security;
