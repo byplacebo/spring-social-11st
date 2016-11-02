@@ -16,8 +16,8 @@ public class ElevenStreetServiceProvider extends AbstractOAuth2ServiceProvider<E
     }
 
     private static OAuth2Template getOAuth2Template(String appId, String appSecret) {
-        OAuth2Template oAuth2Template = new OAuth2Template(appId, appSecret, "https://apis.skplanetx.com/11st/oauth/authorize"
-                , "https://apis.skplanetx.com/11st/oauth/token");
+        OAuth2Template oAuth2Template = new OAuth2Template(appId, appSecret, "https://stg-apis.skplanetx.com/11st/oauth/authorize"
+                , "https://stg-apis.skplanetx.com/11st/oauth/token");
         oAuth2Template.setUseParametersForClientAuthentication(true);
         return oAuth2Template;
     }
