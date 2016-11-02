@@ -12,8 +12,7 @@ import org.springframework.social.oauth2.AccessGrant;
 public class ElevenStreetConnectionFactory extends OAuth2ConnectionFactory<ElevenStreet> {
 
     public ElevenStreetConnectionFactory(String clientId, String clientSecret) {
-        super("11st", new (clientId, clientSecret),
-                new ElevenStreetAdapter());
+        super("11st", new ElevenStreetServiceProvider(clientId, clientSecret), new ElevenStreetAdapter());
     }
 
     @Override

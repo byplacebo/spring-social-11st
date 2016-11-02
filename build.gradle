@@ -1,10 +1,12 @@
 buildscript {
     repositories {
         maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url "https://repo.spring.io/libs-milestone" }
     }
     dependencies {
         classpath 'org.springframework.build.gradle:docbook-reference-plugin:0.2.8'
         classpath 'me.champeau.gradle:gradle-javadoc-hotfix-plugin:0.1'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
     }
 }
 
@@ -26,7 +28,7 @@ configure(allprojects) {
         junitVersion = '4.11'
         mockitoVersion = '1.9.5'
         servletApiVersion = '3.0.1'
-        springVersion = '4.0.4.RELEASE'
+        springVersion = '4.3.3.RELEASE'
     }
 
     [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:none']
@@ -107,6 +109,39 @@ project('spring-social-11st') {
         compile("javax.servlet:javax.servlet-api:$servletApiVersion", provided)
 
         testCompile "org.springframework:spring-test:$springVersion"
+    }
+}
+
+project('spring-social-11st-example') {
+    apply plugin: 'spring-boot'
+    description = '11st Connect API Test Proejct'
+
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/libs-milestone" }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencies {
+        compile project(':spring-social-11st')
+
+        compile("org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE")
+        compile("org.springframework.boot:spring-boot-starter-security:1.4.1.RELEASE")
+        compile("org.springframework.boot:spring-boot-starter-redis:1.4.1.RELEASE")
+        compile("org.springframework.boot:spring-boot-starter-freemarker:1.4.1.RELEASE")
+        compile("org.springframework.boot:spring-boot-starter-data-jpa:1.4.1.RELEASE")
+
+        compile("org.springframework.social:spring-social-core")
+        compile("org.springframework.social:spring-social-web")
+        compile("org.springframework.session:spring-session")
+        compile("com.github.kstyrc:embedded-redis:0.6")
+        compile("kr.pe.kwonnam.freemarker:freemarker-template-inheritance:0.4.RELEASE")
+
+        compile("com.h2database:h2")
+
+        testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }
 

@@ -5,7 +5,6 @@ import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
-import org.springframework.social.es.api.Ci;
 import org.springframework.social.es.api.ElevenStreet;
 import org.springframework.social.es.api.Member;
 
@@ -28,9 +27,8 @@ public class ElevenStreetAdapter implements ApiAdapter<ElevenStreet> {
     @Override
     public void setConnectionValues(ElevenStreet elevenStreet, ConnectionValues values) {
         final Member member = elevenStreet.getMember();
-        final Ci ci = elevenStreet.getCi();
-        values.setProviderUserId(member.getMemId());
-        values.setDisplayName(ci.getName());
+        values.setProviderUserId(member.getInformation().getMemId());
+        values.setDisplayName(member.getCi().getName());
         values.setProfileUrl("");
         values.setImageUrl("");
     }
@@ -38,10 +36,9 @@ public class ElevenStreetAdapter implements ApiAdapter<ElevenStreet> {
     @Override
     public UserProfile fetchUserProfile(ElevenStreet elevenStreet) {
         final Member member = elevenStreet.getMember();
-        final Ci ci = elevenStreet.getCi();
-        return new UserProfileBuilder().setUsername(member.getMemId())
-                .setEmail(member.getEmail())
-                .setName(ci.getName())
+        return new UserProfileBuilder().setUsername(member.getInformation().getMemId())
+                .setEmail(member.getInformation().getEmail())
+                .setName(member.getCi().getName())
                 .setFirstName("")
                 .setLastName("").build();
     }

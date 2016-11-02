@@ -25,7 +25,6 @@ public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements El
     private String accessToken;
 
     private Member member;
-    private Ci ci;
 
 
     public ElevenStreetTemplate() {
@@ -41,7 +40,6 @@ public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements El
 
     private void initialize() {
         this.member = new MemberTemplate(getRestTemplate(), isAuthorized());
-        this.ci = new CiTemplate(getRestTemplate(), isAuthorized());
     }
 
 
@@ -75,11 +73,6 @@ public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements El
     @Override
     public Member getMember() {
         return this.member;
-    }
-
-    @Override
-    public Ci getCi() {
-        return this.ci;
     }
 
     public String getAccessToken() {

@@ -21,6 +21,8 @@
     <bytecodeTargetLevel>
       <module name="11st_main" target="1.5" />
       <module name="11st_test" target="1.5" />
+      <module name="spring-social-11st-example_main" target="1.8" />
+      <module name="spring-social-11st-example_test" target="1.8" />
       <module name="spring-social-11st-spring-social-11st_main" target="1.6" />
       <module name="spring-social-11st-spring-social-11st_test" target="1.6" />
       <module name="spring-social-11st_main" target="1.6" />

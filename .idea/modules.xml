@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example.iml" group="spring-social-11st-example" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example_main.iml" group="spring-social-11st-example" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st-example/spring-social-11st-example_test.iml" group="spring-social-11st-example" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st.iml" group="spring-social-11st" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st_main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st_main.iml" group="spring-social-11st" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st_test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring-social-11st/spring-social-11st-spring-social-11st_test.iml" group="spring-social-11st" />

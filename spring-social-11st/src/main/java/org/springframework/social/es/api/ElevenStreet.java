@@ -8,5 +8,4 @@ import org.springframework.social.ApiBinding;
  */
 public interface ElevenStreet extends ApiBinding {
     Member getMember();
-    Ci getCi();
 }
