@@ -17,6 +17,7 @@ configure(allprojects) {
     apply plugin: 'javadocHotfix'
 
     group = 'org.springframework.social'
+    version = version
 
     sourceCompatibility = 1.6
     targetCompatibility = 1.6
@@ -96,7 +97,8 @@ configure(subprojects) { subproject ->
 
 project('spring-social-11st') {
     apply plugin: 'maven'
-    description = '11st Connect API'
+    description = '11st Connect ${version} API'
+
     dependencies {
         compile("org.springframework.boot:spring-boot-starter:$springBootVersion", optional)
         compile("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion", optional)
