@@ -95,6 +95,7 @@ configure(subprojects) { subproject ->
 }
 
 project('spring-social-11st') {
+    apply plugin: 'maven'
     description = '11st Connect API'
     dependencies {
         compile("org.springframework.boot:spring-boot-starter:$springBootVersion", optional)
@@ -110,6 +111,17 @@ project('spring-social-11st') {
 
         testCompile "org.springframework:spring-test:$springVersion"
     }
+
+    // to skplanet maven repo
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "http://mvn.skplanet.com/content/repositories/releases")
+                snapshotRepository(url: "http://mvn.skplanet.com/content/repositories/snapshots")
+            }
+        }
+    }
+
 }
 
 project('spring-social-11st-example') {
@@ -281,7 +293,7 @@ task updateRootDocs << {
         into "${rootProject.projectDir}"
         include 'notice.txt'
         expand(copyright: new Date().format('yyyy'), version: project.version)
-        rename { filename -> 'NOTICE' }
+        rename { filename -> 'NOTICE' }                                     
     }
 
     copy {
