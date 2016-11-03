@@ -17,13 +17,8 @@ public class MemberOperationsTemplate extends AbstractElevenStreetTemplate imple
         super(restTemplate, isAuthorized);
     }
 
-    private MemberAbout memberAbout;
-
     private MemberAbout getMemberAbout(String url) {
-        if(memberAbout == null) {
-            memberAbout = getEntity(url, MemberAbout.class);
-        }
-        return memberAbout;
+        return getEntity(url, MemberAbout.class);
     }
 
     @Override

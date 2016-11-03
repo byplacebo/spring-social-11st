@@ -31,10 +31,10 @@ public class MemberAbout {
         private String sex;
 
         public String getFirstName() {
-            return null;
+            return name != null && name.contains(" ") ? name.split(" ")[0] : name;
         }
         public String getLastName() {
-            return null;
+            return name != null && name.contains(" ") ? name.split(" ")[1] : null ;
         }
 
         public String getName() {
