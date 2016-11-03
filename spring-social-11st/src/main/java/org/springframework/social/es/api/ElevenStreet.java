@@ -7,5 +7,5 @@ import org.springframework.social.ApiBinding;
  * @since 2016. 11. 1.
  */
 public interface ElevenStreet extends ApiBinding {
-    Member getMember();
+    MemberOperations getMemberOperations();
 }

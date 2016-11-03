@@ -6,7 +6,7 @@ import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
 import org.springframework.social.es.api.ElevenStreet;
-import org.springframework.social.es.api.Member;
+import org.springframework.social.es.api.MemberOperations;
 
 /**
  * @author HyungTae Lim
@@ -17,7 +17,7 @@ public class ElevenStreetAdapter implements ApiAdapter<ElevenStreet> {
     @Override
     public boolean test(ElevenStreet elevenStreet) {
         try {
-            elevenStreet.getMember();
+            elevenStreet.getMemberOperations();
             return true;
         } catch (ApiException e) {
             return false;
@@ -26,21 +26,21 @@ public class ElevenStreetAdapter implements ApiAdapter<ElevenStreet> {
 
     @Override
     public void setConnectionValues(ElevenStreet elevenStreet, ConnectionValues values) {
-        final Member member = elevenStreet.getMember();
-        values.setProviderUserId(member.getInformation().getMemId());
-        values.setDisplayName(member.getCi().getName());
-        values.setProfileUrl("");
-        values.setImageUrl("");
+        final MemberOperations memberOperations = elevenStreet.getMemberOperations();
+        values.setProviderUserId(memberOperations.getMemberInformation().getMemNm());
+        values.setDisplayName(memberOperations.getMemberCi().getName());
     }
 
     @Override
     public UserProfile fetchUserProfile(ElevenStreet elevenStreet) {
-        final Member member = elevenStreet.getMember();
-        return new UserProfileBuilder().setUsername(member.getInformation().getMemId())
-                .setEmail(member.getInformation().getEmail())
-                .setName(member.getCi().getName())
-                .setFirstName("")
-                .setLastName("").build();
+        final MemberOperations memberOperations = elevenStreet.getMemberOperations();
+        return new UserProfileBuilder()
+                .setUsername(memberOperations.getMemberInformation().getMemId())
+                .setId(memberOperations.getMemberInformation().getMemNo())
+                .setEmail(memberOperations.getMemberInformation().getEmail())
+                .setName(memberOperations.getMemberCi().getName())
+                .setFirstName(memberOperations.getMemberCi().getFirstName())
+                .setLastName(memberOperations.getMemberCi().getLastName()).build();
     }
 
     @Override

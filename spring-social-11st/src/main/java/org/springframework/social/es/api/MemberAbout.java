@@ -1,12 +1,25 @@
 package org.springframework.social.es.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author HyungTae Lim
- * @since 2016. 11. 1.
+ * @since 2016. 11. 3.
  */
-public interface Member {
-    Information getInformation();
-    Ci getCi();
+public class MemberAbout {
+    @JsonProperty("CIInfo")
+    private Ci ci;
+
+    @JsonProperty("MemberInfo")
+    private Information information;
+
+    public Ci getCi() {
+        return ci;
+    }
+
+    public Information getInformation() {
+        return information;
+    }
 
     public static class Ci {
         private String birth;
@@ -16,6 +29,13 @@ public interface Member {
         private String name;
         private String phone;
         private String sex;
+
+        public String getFirstName() {
+            return null;
+        }
+        public String getLastName() {
+            return null;
+        }
 
         public String getName() {
             return name;
@@ -73,5 +93,6 @@ public interface Member {
             return phone;
         }
     }
+
 
 }

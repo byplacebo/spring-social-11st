@@ -6,6 +6,7 @@ import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.social.es.api.impl.MemberOperationsTemplate;
 import org.springframework.social.oauth2.AbstractOAuth2ApiBinding;
 import org.springframework.social.oauth2.OAuth2Version;
 
@@ -24,7 +25,7 @@ import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS
 public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements ElevenStreet {
     private String accessToken;
 
-    private Member member;
+    private MemberOperations memberOperations;
 
 
     public ElevenStreetTemplate() {
@@ -39,7 +40,7 @@ public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements El
     }
 
     private void initialize() {
-        this.member = new MemberTemplate(getRestTemplate(), isAuthorized());
+        this.memberOperations = new MemberOperationsTemplate(getRestTemplate(), isAuthorized());
     }
 
 
@@ -70,9 +71,8 @@ public class ElevenStreetTemplate extends AbstractOAuth2ApiBinding implements El
         return OAuth2Version.BEARER;
     }
 
-    @Override
-    public Member getMember() {
-        return this.member;
+    public MemberOperations getMemberOperations() {
+        return this.memberOperations;
     }
 
     public String getAccessToken() {
