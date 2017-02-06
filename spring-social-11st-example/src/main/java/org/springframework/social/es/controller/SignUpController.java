@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.web.ProviderSignInUtils;
-import org.springframework.social.es.social.FrontUserDetail;
+import org.springframework.social.es.security.UserDetail;
 import org.springframework.social.es.user.User;
 import org.springframework.social.es.user.UserCreateRequestVO;
 import org.springframework.social.es.user.UserService;
@@ -45,9 +45,9 @@ public class SignUpController {
 			User user = userService.create(userCreateRequestVO);
 			providerSignInUtils.doPostSignUp(user.getEmail(), request);
 
-			FrontUserDetail frontUserDetail = new FrontUserDetail(user);
+			UserDetail userDetail = new UserDetail(user);
 
-			Authentication authentication = new UsernamePasswordAuthenticationToken(frontUserDetail, null, frontUserDetail.getAuthorities());
+			Authentication authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
 			return "redirect:/";
