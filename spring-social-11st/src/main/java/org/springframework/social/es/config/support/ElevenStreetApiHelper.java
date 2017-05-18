@@ -34,7 +34,7 @@ public class ElevenStreetApiHelper implements ApiHelper<ElevenStreet> {
                 .createConnectionRepository(userIdSource.getUserId())
                 .findPrimaryConnection(ElevenStreet.class);
         if (logger.isDebugEnabled() && connection == null) {
-            logger.debug("No current connection; Returning default ElevenStreetTemplate instance.");
+            logger.debug("No current connection; Returning default ElevenStreetOAuth2Template instance.");
         }
         return connection != null ? connection.getApi() : null;
     }

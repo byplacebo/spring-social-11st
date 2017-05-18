@@ -7,7 +7,8 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.social.connect.UserProfileBuilder;
 import org.springframework.social.es.api.ElevenStreet;
 import org.springframework.social.es.api.MemberAbout;
-import org.springframework.social.es.api.MemberOperations;
+
+import java.util.Optional;
 
 /**
  * @author HyungTae Lim
@@ -27,23 +28,31 @@ public class ElevenStreetAdapter implements ApiAdapter<ElevenStreet> {
 
     @Override
     public void setConnectionValues(ElevenStreet elevenStreet, ConnectionValues values) {
-        final MemberAbout.Information memberInformation = elevenStreet.getMemberOperations().getMemberInformation();
-        final MemberAbout.Ci memberCi = elevenStreet.getMemberOperations().getMemberCi();
-        values.setProviderUserId(memberInformation.getMemNm());
-        values.setDisplayName(memberCi.getName());
+        final Optional<MemberAbout.Information> memberInformation = elevenStreet.getMemberOperations().getMemberInformation();
+        final Optional<MemberAbout.Ci> memberCi = elevenStreet.getMemberOperations().getMemberCi();
+        if (memberInformation.isPresent() && memberCi.isPresent()) {
+            values.setProviderUserId(memberInformation.get().getMemNm());
+            values.setDisplayName(memberCi.get().getName());
+        }
     }
 
     @Override
     public UserProfile fetchUserProfile(ElevenStreet elevenStreet) {
-        final MemberAbout.Information memberInformation = elevenStreet.getMemberOperations().getMemberInformation();
-        final MemberAbout.Ci memberCi = elevenStreet.getMemberOperations().getMemberCi();
-        return new UserProfileBuilder()
-                .setUsername(memberInformation.getMemId())
-                .setId(memberInformation.getMemNo())
-                .setEmail(memberInformation.getEmail())
-                .setName(memberCi.getName())
-                .setFirstName(memberCi.getFirstName())
-                .setLastName(memberCi.getLastName()).build();
+        final Optional<MemberAbout.Information> memberInformation = elevenStreet.getMemberOperations().getMemberInformation();
+        final Optional<MemberAbout.Ci> memberCi = elevenStreet.getMemberOperations().getMemberCi();
+        if (memberInformation.isPresent() && memberCi.isPresent()) {
+            return new UserProfileBuilder()
+                    .setUsername(memberInformation.get().getMemId())
+                    .setId(memberInformation.get().getMemNo())
+                    .setEmail(memberInformation.get().getEmail())
+                    .setName(memberCi.get().getName())
+                    .setFirstName(memberCi.get().getFirstName())
+                    .setLastName(memberCi.get().getLastName()).build();
+        }
+        else {
+            return null;
+        }
+
     }
 
     @Override

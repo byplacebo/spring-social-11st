@@ -11,13 +11,13 @@ import org.springframework.social.oauth2.AccessGrant;
  */
 public class ElevenStreetConnectionFactory extends OAuth2ConnectionFactory<ElevenStreet> {
 
-    public ElevenStreetConnectionFactory(String clientId, String clientSecret) {
-        super("11st", new ElevenStreetServiceProvider(clientId, clientSecret), new ElevenStreetAdapter());
+    public ElevenStreetConnectionFactory(String clientId, String clientSecret, String url, String reousrceUrl) {
+        super("11st", new ElevenStreetServiceProvider(clientId, clientSecret, url, reousrceUrl), new ElevenStreetAdapter());
     }
 
     @Override
     protected String extractProviderUserId(AccessGrant accessGrant) {
-        ElevenStreet api = ((ElevenStreetServiceProvider)getServiceProvider()).getApi(accessGrant.getAccessToken());
+        ElevenStreet api = ((ElevenStreetServiceProvider) getServiceProvider()).getApi(accessGrant.getAccessToken());
         UserProfile userProfile = getApiAdapter().fetchUserProfile(api);
         return userProfile.getUsername();
     }

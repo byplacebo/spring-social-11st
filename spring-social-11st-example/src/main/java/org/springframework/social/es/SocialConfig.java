@@ -31,7 +31,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
         connectionFactoryConfigurer.addConnectionFactory(new ElevenStreetConnectionFactory(
                 environment.getProperty("spring.social.11st.appId"),
-                environment.getProperty("spring.social.11st.appSecret")));
+                environment.getProperty("spring.social.11st.appSecret"),
+                environment.getProperty("spring.social.11st.url"),
+                environment.getProperty("spring.social.11st.resourceUrl")
+        ));
     }
 
     @Override

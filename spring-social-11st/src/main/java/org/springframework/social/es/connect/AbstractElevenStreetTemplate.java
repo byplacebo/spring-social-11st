@@ -1,7 +1,7 @@
 package org.springframework.social.es.connect;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
@@ -23,7 +23,7 @@ public class AbstractElevenStreetTemplate {
 
     protected final RestTemplate restTemplate;
     protected final boolean isAuthorized;
-    private final static Log logger = LogFactory.getLog(AbstractElevenStreetTemplate.class);
+    private static final Logger log = LoggerFactory.getLogger(AbstractElevenStreetTemplate.class);
 
     protected AbstractElevenStreetTemplate(RestTemplate restTemplate, boolean isAuthorized) {
         this.restTemplate = restTemplate;
@@ -32,10 +32,7 @@ public class AbstractElevenStreetTemplate {
         restTemplate.setErrorHandler(new DefaultResponseErrorHandler() {
             @Override
             public void handleError(ClientHttpResponse response) throws IOException {
-                if (logger.isWarnEnabled()) {
-                    String bodyText = StreamUtils.copyToString(response.getBody(), Charset.defaultCharset());
-                    logger.warn("11st Connect API REST response body:" + bodyText);
-                }
+                log.warn("11st Connect API REST response code: {}, body: {}" + response.getStatusCode(), StreamUtils.copyToString(response.getBody(), Charset.defaultCharset()));
             }
         });
     }

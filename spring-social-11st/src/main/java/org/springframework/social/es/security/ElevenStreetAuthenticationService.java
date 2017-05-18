@@ -12,6 +12,10 @@ public class ElevenStreetAuthenticationService extends OAuth2AuthenticationServi
 
 
     public ElevenStreetAuthenticationService(String apiKey, String appSecret) {
-        super(new ElevenStreetConnectionFactory(apiKey, appSecret));
+        super(new ElevenStreetConnectionFactory(apiKey, appSecret, "https://pri-apis.skplanetx.com", "https://apis.skplanetx.com"));
+    }
+
+    public ElevenStreetAuthenticationService(String apiKey, String appSecret, String url, String reousrceUrl) {
+        super(new ElevenStreetConnectionFactory(apiKey, appSecret, url, reousrceUrl));
     }
 }
